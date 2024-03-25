@@ -1,0 +1,132 @@
+\documentclass[10pt]{article}
+
+\usepackage[left=0.8in,right=0.8in,top=0.15in,bottom=0.8in]{geometry}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
+\urlstyle{rm}
+\usepackage{url}
+
+\title{CAI 4104/6108: Machine Learning Engineering\\
+	\Large Project Proposal: {\textcolor{purple}{Title of the Project}}} %% TODO: replace with the title of your project
+
+%% TODO: your name and email go here (all members of the group)
+%% Add/remove as needed and designate a point of contact
+\author{
+        Your Name \\{\em (Point of Contact)} \\
+        email1@ufl.edu\\
+        \and
+        Group Member 2's Name \\
+        email2@ufl.edu\\
+        \and
+        Group Member 3's Name \\
+        email3@ufl.edu\\
+        \and
+        Group Member 4's Name \\
+        email4@ufl.edu\\
+        \and
+        Group Member 5's Name \\
+        email5@ufl.edu\\
+}
+
+% set the date to today
+\date{\today}
+
+
+\begin{document} % start document tag
+
+\maketitle
+
+
+%%% Remember: writing counts! (try to be clear and concise.)
+%%% the whole proposal should be about 2 pages (in 11pt font)
+
+
+%% TODO: briefly describe your proposed task and data
+%% Must address:
+%% - What is the task?
+%% - What is the dataset? How large is it? Include a link
+%%
+\section*{Task \& Dataset}
+
+
+\paragraph{Task.} 
+% TODO: What is the task about? Be specific. A few sentences is fine. 
+
+\begin{itemize}
+
+\item {\bf Description: } Write here. % TODO: A few sentences describing the task. What is the task about?
+
+\item {\bf Type: } Write here. % TODO: What is the type of task?   (Is it supervised/unsupervised, it is classification/regression?) If it is classification, is it multi-class? Be as a specific as possible.
+
+\end{itemize}
+
+\paragraph{Dataset.} 
+%
+\begin{itemize}
+
+\item {\bf Description: } Write here. % TODO: A few sentences describing the dataset (what kind of data is it? where does it come from?). Note: no toy datasets please!
+
+\item {\bf Size: } Write here. % TODO: How many data points/instances does it contain? How many features? What are the features (how are they encoded)?
+
+\item {\bf Available at: } Write URL here. Example: \url{https://www.url\_of\_data.com/} % TODO: Where is the dataset? Make sure you include a link and explain any access restrictions.
+
+\end{itemize}
+
+% TODO: remove the following example of citation and footnote before you submit.
+If necessary you can cite scholarly work like this~\cite{murphy2022probabilistic}. You can also include URLs in a footnote like this.\footnote{UCI repository: \url{https://archive.ics.uci.edu/}.}
+
+
+%% TODO: write about your evaluation methodology using the provided template.
+%%
+\section*{Evaluation}
+
+\paragraph{Methodology.} 
+% TODO: What methodology will you use to evaluate your ML pipeline? Are you going to follow best practices? How are you going to split the data (train-test)? A few sentences is fine. 
+
+\begin{itemize}
+
+\item {\bf Description: } Write here. % TODO: A few sentences describing the methodology.
+
+\item {\bf CV/Split: } Write here. % TODO: How are you going to split the data? Are you using an existing split or creating your own? Will you do cross-validation? Be as a specific as possible.
+
+\end{itemize}
+
+
+\paragraph{Metrics.} 
+% TODO: What metrics will you use to evaluate your ML pipeline? Give at least two and explain how you will compute them. A few sentences is fine. 
+
+\begin{itemize}
+
+\item {\bf Metric 1: } Write here. % TODO: A sentence or two naming & describing the metric and a formula (if not trivial).
+
+\item {\bf Metric 2: } Write here. % TODO: A sentence or two naming & describing the metric and a formula (if not trivial).
+
+\end{itemize}
+
+
+
+\paragraph{Baselines.} 
+% TODO: What baselines or point of comparison will you use to evaluate your ML pipeline? Give at least two and provide a reference for them. Important: only one can be a "simple" baseline (e.g., random guessing or mean model). The other must be a citable proper scientific or engineering work.
+
+\begin{itemize}
+
+\item {\bf Baseline 1: } Write here. % TODO: A few sentences and a (possibly) a link or citation. If known/applicable, give the performance of the baseline according to your chosen metrics.
+
+\item {\bf Baseline 1: } Write here. % TODO: A few sentences and a (possibly) a link or citation. If known/applicable, give the performance of the baseline according to your chosen metrics.
+
+\end{itemize}
+
+% TODO: remove the following example sentence before you submit.
+Here you must provide citations and/or links.
+
+
+
+% references here
+{\small
+\bibliography{refs}
+\bibliographystyle{abbrv}
+}
+
+\end{document} % end tag of the document
