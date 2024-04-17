@@ -9,25 +9,25 @@
 \usepackage{url}
 
 \title{CAI 4104/6108: Machine Learning Engineering\\
-	\Large Project Proposal: {\textcolor{purple}{Title of the Project}}} %% TODO: replace with the title of your project
+	\Large Project Proposal: {\textcolor{purple}{Deepfake Detection using Convolutional Neural Networks}}} %% TODO: replace with the title of your project
 
 %% TODO: your name and email go here (all members of the group)
 %% Add/remove as needed and designate a point of contact
 \author{
-        C.J. Annunziato \\{\em (Point of Contact)} \\
-        c.annunziato@ufl.edu\\
+        Edward Guthrie \\%%{\em (Point of Contact)} \\
+        edwardguthrie@ufl.edu\\
+        \and
+        Michael Pangas \\
+        mpangas@ufl.edu\\
         \and
         Aaron Shumer \\
         shumera@ufl.edu\\
         \and
-        Group Member 3's Name \\
-        email3@ufl.edu\\
+        Parker Hovis \\
+        p.hovis@ufl.edu\\
         \and
-        Group Member 4's Name \\
-        email4@ufl.edu\\
-        \and
-        Group Member 5's Name \\
-        email5@ufl.edu\\
+        C.J. Annunziato \\
+        c.annunziato@ufl.edu\\
 }
 
 % set the date to today
@@ -56,9 +56,9 @@
 
 \begin{itemize}
 
-\item {\bf Description: } Write here. % TODO: A few sentences describing the task. What is the task about?
+\item {\bf Description: } Our project employs Convolutional Neural Networks to accurately distinguish deepfake images of faces from authentic ones.  % TODO: A few sentences describing the task. What is the task about?
 
-\item {\bf Type: } Write here. % TODO: What is the type of task?   (Is it supervised/unsupervised, it is classification/regression?) If it is classification, is it multi-class? Be as a specific as possible.
+\item {\bf Type: } The project's task is a supervised, binary classification problem where the goal is to classify images as either real or deepfake.% TODO: What is the type of task?   (Is it supervised/unsupervised, it is classification/regression?) If it is classification, is it multi-class? Be as a specific as possible.
 
 \end{itemize}
 
@@ -66,16 +66,16 @@
 %
 \begin{itemize}
 
-\item {\bf Description: } Write here. % TODO: A few sentences describing the dataset (what kind of data is it? where does it come from?). Note: no toy datasets please!
+\item {\bf Description: } We selected the DeepFakeFace~\cite{song2023robustness} dataset, a comprehensive collection of artificially generated celebrity faces using diffusion models. This dataset offers a variety of images to test the robustness and adaptability of detection tools under different conditions, such as image quality and the diffusion model used for generation. The dataset was created by Haixu Song, Shiyu Huang, Yinpeng Dong, Wei-Wei Tu.  % TODO: A few sentences describing the dataset (what kind of data is it? where does it come from?). Note: no toy datasets please!
 
-\item {\bf Size: } Write here. % TODO: How many data points/instances does it contain? How many features? What are the features (how are they encoded)?
+\item {\bf Size: } The dataset provides 120,000 images of faces, labeled as real or fake. 30,000 images are real and 90,000 are fake, generated with advanced diffusion models. % TODO: How many data points/instances does it contain? How many features? What are the features (how are they encoded)?
 
-\item {\bf Available at: } Write URL here. Example: \url{https://www.url\_of\_data.com/} % TODO: Where is the dataset? Make sure you include a link and explain any access restrictions.
+\item {\bf Available at: } \url{https://huggingface.co/datasets/OpenRL/DeepFakeFace} % TODO: Where is the dataset? Make sure you include a link and explain any access restrictions.
 
 \end{itemize}
 
 % TODO: remove the following example of citation and footnote before you submit.
-If necessary you can cite scholarly work like this~\cite{murphy2022probabilistic}. You can also include URLs in a footnote like this.\footnote{UCI repository: \url{https://archive.ics.uci.edu/}.}
+% If necessary you can cite scholarly work like this~\cite{murphy2022probabilistic}. You can also include URLs in a footnote like this.\footnote{UCI repository: \url{https://archive.ics.uci.edu/}.}
 
 
 %% TODO: write about your evaluation methodology using the provided template.
@@ -87,9 +87,9 @@ If necessary you can cite scholarly work like this~\cite{murphy2022probabilistic
 
 \begin{itemize}
 
-\item {\bf Description: } Write here. % TODO: A few sentences describing the methodology.
+\item {\bf Description: } To evaluate our ML pipeline, we will compare our model's accuracy and convergence to existing models that use other deepfake datasets. We will use a train-test-validation split. % TODO: A few sentences describing the methodology.
 
-\item {\bf CV/Split: } Write here. % TODO: How are you going to split the data? Are you using an existing split or creating your own? Will you do cross-validation? Be as a specific as possible.
+\item {\bf CV/Split: } Since there are three times as many generated images as real images, and the images were generated with three different diffusion models (Stable Diffusion v1.5, Stable Diffusion Inpainting, and InsightFace), we will use stratified sampling to minimize the bias introduced by the significant difference in quantity of images of each type. We will make our own split of the data using a 80-10-10 split, 80\% for training, 10\% for testing, and 10\% for validation. We will also use stratified cross-validation to avoid bias when evaluating the model. % TODO: How are you going to split the data? Are you using an existing split or creating your own? Will you do cross-validation? Be as a specific as possible.
 
 \end{itemize}
 
@@ -99,9 +99,9 @@ If necessary you can cite scholarly work like this~\cite{murphy2022probabilistic
 
 \begin{itemize}
 
-\item {\bf Metric 1: } Write here. % TODO: A sentence or two naming & describing the metric and a formula (if not trivial).
+\item {\bf Metric 1: } Accuracy. This represents the proportion of both real and fake images correctly identified out of all images. The formula is as follows: $(TP+TN)/(TP+TN+FP+FN)$.
 
-\item {\bf Metric 2: } Write here. % TODO: A sentence or two naming & describing the metric and a formula (if not trivial).
+\item {\bf Metric 2: } $F_{1}$ Score. The $F_{1}$ score balances precision and recall, providing a single metric to assess performance where both false positives and false negatives are costly. The formula is as follows: $2 \times (Precision \times Recall)/(Precision+Recall)$.
 
 \end{itemize}
 
@@ -112,14 +112,16 @@ If necessary you can cite scholarly work like this~\cite{murphy2022probabilistic
 
 \begin{itemize}
 
-\item {\bf Baseline 1: } Write here. % TODO: A few sentences and a (possibly) a link or citation. If known/applicable, give the performance of the baseline according to your chosen metrics.
+\item {\bf Baseline 1: } Reconstruction-Classification Learning framework (RECCE)~\cite{Cao_2022_CVPR}. RECCE, an implementation of end-to-end Reconstruction-Classification learning for face forgery detection, has an accuracy of .3814, .5135, and .5899 for the Stable Diffusion v1.5, Stable Diffusion Inpainting, and Insight models, respectively. An implementation of RECCE is available at \url{https://github.com/VISION-SJTU/RECCE}
+% TODO: A few sentences and a (possibly) a link or citation. If known/applicable, give the performance of the baseline according to your chosen metrics.
 
-\item {\bf Baseline 1: } Write here. % TODO: A few sentences and a (possibly) a link or citation. If known/applicable, give the performance of the baseline according to your chosen metrics.
+
+\item {\bf Baseline 2: } Random Guessing. Randomly guessing if an image is generated would have .5000 accuracy.  % TODO: A few sentences and a (possibly) a link or citation. If known/applicable, give the performance of the baseline according to your chosen metrics.
 
 \end{itemize}
 
 % TODO: remove the following example sentence before you submit.
-Here you must provide citations and/or links.
+% Here you must provide citations and/or links.
 
 
 
